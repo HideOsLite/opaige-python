@@ -1,0 +1,19 @@
+[project]
+name = "opaige"
+version = "1.0.0"
+description = "The Opaige API for Python: visa requirements, file review, forms, bookings, lodgements and webhooks."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.8"
+dependencies = []
+
+[project.urls]
+Homepage = "https://opaige.com/developers"
+
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["opaige"]
