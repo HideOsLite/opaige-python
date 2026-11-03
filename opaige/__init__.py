@@ -5,7 +5,7 @@
     answer = opaige.check_requirements(passport="IN", destination="FR")
     opaige.send_bookings(body={"bookings": [...]})
 
-A sandbox key answers in the same shape and saves and bills nothing. Standard library only.
+A sandbox key answers in the same shape, is never billed and never touches live data. Standard library only.
 """
 from .operations import Operations
 from .request import VERSION, OpaigeError, Requester

@@ -23,7 +23,7 @@ a PDF comes back as `bytes`. A query value that is a Python word gets an undersc
 
 **Errors** raise `OpaigeError` with `status`, `code`, `request_id` (quote it to support) and `details`.
 **Retries:** reads, and writes sent with an `idempotency_key`, are tried again after 429 and 5xx answers (`max_retries`, default 2).
-**Sandbox:** a sandbox key answers in the same shape and saves and bills nothing.
+**Sandbox:** a sandbox key answers in the same shape, is never billed and never touches live data. Bookings, students and appointments it sends are kept as test data.
 
 ## Webhooks
 

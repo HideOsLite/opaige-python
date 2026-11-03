@@ -29,6 +29,14 @@ class Operations:
         """One booking by your reference. GET /bookings/{ref}"""
         return self._http.request("GET", f"/bookings/{_q(ref)}", query=None)
 
+    def get_canada_forms(self, *, id: str) -> Any:
+        """Where the Canada forms stand on a case, and the forms filed, each with a 10-minute link. GET /cases/{id}/canada-forms"""
+        return self._http.request("GET", f"/cases/{_q(id)}/canada-forms", query=None)
+
+    def request_canada_forms(self, *, id: str) -> Any:
+        """Queue Canada’s IMM 5257 and IMM 5707 on a case: filled from the case, validated and read back. POST /cases/{id}/canada-forms"""
+        return self._http.request("POST", f"/cases/{_q(id)}/canada-forms", query=None)
+
     def get_case_file(self, *, id: str) -> Any:
         """A case’s finished file, with fresh links. GET /cases/{id}/file"""
         return self._http.request("GET", f"/cases/{_q(id)}/file", query=None)
@@ -70,7 +78,7 @@ class Operations:
         return self._http.request("GET", f"/lodgements", query=None)
 
     def create_lodgement(self, *, body: Dict[str, Any], idempotency_key: Optional[str] = None) -> Any:
-        """Fill a visa application on the government portal, parked before the declarations (au-600) or the photo and signature (us-ds160). POST /lodgements"""
+        """Fill a visa application on the government portal, parked before the declarations (au-600, au-500) or the photo and signature (us-ds160). POST /lodgements"""
         return self._http.request("POST", f"/lodgements", query=None, body=body, idempotency_key=idempotency_key)
 
     def get_lodgement(self, *, id: str) -> Any:
@@ -142,7 +150,7 @@ class Operations:
         return self._http.request("GET", f"/students/compliance", query={"as_of": as_of})
 
     def student_funds_check(self, *, body: Dict[str, Any]) -> Any:
-        """Pre-CAS: a UK Student’s money against the Immigration Rules, each finding with its paragraph. POST /students/funds-check"""
+        """A student’s money against the study country’s rules (GB, CA, AU, US), each finding with its source. POST /students/funds-check"""
         return self._http.request("POST", f"/students/funds-check", query=None, body=body)
 
     def list_trips(self, *, status: Optional[Union[str, int]] = None, updated_since: Optional[Union[str, int]] = None) -> Any:
